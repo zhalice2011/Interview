@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>扫一扫</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function ivokeScan() {
+    //注册成全局函数
+    window['_weixin_callback'] = function() {
+      // todo
+    }
+
+    var iframe = document.createElement('iframe')
+    iframe.style.display = 'none'
+    iframe.src = 'weixin://dl/scan?callback=_weixin_callback' 
+
+    var body = document.body
+    body.appendChild(iframe) // iframe插入到body中就会立即执行
+
+    // 异步 避免重复触发iframe
+    setTimeout(function() {
+      body.removeChild(iframe)
+      iframe = null
+    })
+
+  }
+</script>
+</html>
