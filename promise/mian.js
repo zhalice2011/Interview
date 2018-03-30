@@ -1,6 +1,15 @@
-const greet2 = require('./node')
+const myPromise = require('./init-promise.js')
 
 
-var s = 'Michael';
+var a = new myPromise(function(resolve,reject) {
+  resolve('haha1')
 
-greet2(s); // Hello, Michael!
+  reject('haha2')
+})
+
+a.then(function(data) {
+  console.log('成功', data)
+},function(data) {
+  console.log('失败', data)
+})
+

@@ -1,27 +1,79 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="./vue-2.5.16"></script>
-
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
   <div id="app">
-    <p>{{p}}</p>
+    <!-- 第一个全选 -->
+    <template>
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">订单管理</el-checkbox>
+      <div style="margin: 15px 0;"></div>
+      <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+        <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+      </el-checkbox-group>
+    </template>
+    <!-- 第一个全选 -->
+    <template>
+        <el-checkbox :indeterminate="isIndeterminate2" v-model="checkAll2" @change="handleCheckAllChange2">客服管理</el-checkbox>
+        <div style="margin: 15px 0;"></div>
+        <el-checkbox-group v-model="checkedCities2" @change="handleCheckedCitiesChange2">
+          <el-checkbox v-for="city in cities2" :label="city" :key="city">{{city}}</el-checkbox>
+        </el-checkbox-group>
+      </template>
   </div>
+</body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <script>
-    var vm = new Vue({
+
+      let cityOptions = [];
+      for (let i = 1; i< 50; i++) {
+        cityOptions.push(i)
+      }
+      let cityOptions2 = [];
+      for (let i = 50; i< 100; i++) {
+        cityOptions2.push(i)
+      }
+      new Vue({
       el: '#app',
-      data() {
+      data: function() {
         return {
-          price: 1000
+          checkAll: false,
+          checkAll2: false,
+          checkedCities: ['1', '2'],
+          checkedCities2: ['99'],
+          cities: cityOptions,
+          cities2: cityOptions2,
+          isIndeterminate: true,
+          isIndeterminate2: true
+         }
+      },
+      
+      methods: {
+        handleCheckAllChange(val) {
+          this.checkedCities = val ? cityOptions : [];
+          this.isIndeterminate = false;
+        },
+        handleCheckAllChange2(val) {
+          this.checkedCities2 = val ? cityOptions2 : [];
+          this.isIndeterminate2 = false;
+        },
+        handleCheckedCitiesChange(value) {
+          let checkedCount = value.length;
+          this.checkAll = checkedCount === this.cities.length;
+          this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+        },
+        handleCheckedCitiesChange2(value) {
+          let checkedCount2 = value.length;
+          this.checkAll2 = checkedCount2 === this.cities2.length;
+          this.isIndeterminate2 = checkedCount2 > 0 && checkedCount2 < this.cities2.length;
         }
       }
     })
   </script>
-</body>
 </html>
