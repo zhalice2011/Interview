@@ -18,7 +18,7 @@
 
     var iframe = document.createElement('iframe')
     iframe.style.display = 'none'
-    iframe.src = 'weixin://dl/scan?callback=_weixin_callback' 
+    iframe.src = 'weixin://dl/scan?callback=_weixin_callback'  // 发送微信扫一扫协议
 
     var body = document.body
     body.appendChild(iframe) // iframe插入到body中就会立即执行
