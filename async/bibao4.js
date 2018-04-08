@@ -23,7 +23,3 @@ console.log(5);
 
 // 答案
 // 2 3 5 4 1
-
-var a = for(var i = 0; i < 5; i++) {
-  
-}

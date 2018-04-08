@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script async src='async1.js'></script>
+  <script async src='async2.js'></script>
+  <script defer src='defer2.js'></script>
+  <script defer src='defer1.js'></script>
+
+</head>
+<body>
+  <div>
+    <script>
+      document.write('<span>哈哈</span>')
+    </script>
+    <script>
+      console.log('1')
+      for (var i=0; i<20000; i++) {
+        if (i % 2000 === 0) {
+          console.log(i)
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>
