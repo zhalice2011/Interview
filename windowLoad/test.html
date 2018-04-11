@@ -1,0 +1,37 @@
+<html>
+<meta charset="UTF-8">
+<head>
+  <title>Untitled</title>
+
+</head>
+<body>
+    window.onload=window.onload是在dom文档树加载完和所有文件加载完之后执行一个函数
+
+  <div id="god"></div>
+  <img id="img1" src="https://i.imgur.com/UGPPf1H.gif">
+</body>
+<script type="text/javascript">
+    
+    window.onload= function (){
+        var god = document.getElementById('god');
+        god.innerHTML="say something!";
+        console.log('hahha')
+
+
+
+        // img.onload事件  这个是不会运行的  因为window.onload是在img加载完成之后运行的事件
+        var img = document.getElementById('img1');   
+        img.onload = function(){  
+            alert(1);  
+            console.log('hahha2') 
+        };   
+    }
+
+
+    // img.onload在window.onload事件之前打印
+    var img = document.getElementById('img1');   
+    img.onload = function(){  
+      console.log('hahha2') 
+    };   
+</script>
+</html>
